@@ -1,0 +1,9 @@
+<div class="card">
+  <div class="card-body text-center">
+    <h5 class="card-title">Create Post</h5>
+    <%= form_with model: @post do |form| %>
+      <%= form.text_area :body, class: "card-text form-control" %>
+      <%= form.submit "Publish", class: "btn btn-primary mt-2" %>
+    <% end %>
+  </div>
+</div>
