@@ -12,11 +12,18 @@
 
   <body>
     <%= render "layouts/navbar" %>
-
-    <% if flash.any? %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <% flash.each do |type, msg| %>
+      <% if type == "alert" %>
+        <div class="alert alert-warning">
+          <%= msg %>
+        </div>
+      <% else %>
+        <div class="alert alert-success">
+          <%= msg %>
+        </div>
+      <% end %>
     <% end %>
+
     <%= yield %>
   </body>
 </html>
