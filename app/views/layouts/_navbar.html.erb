@@ -6,11 +6,14 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Notifications
+            Notifications 
+            <% if current_user.pending_friend_requests.any? %>
+              <sup><strong><%= current_user.pending_friend_requests.length %></strong></sup>
+            <% end %>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <ul class="dropdown-menu px-4" aria-labelledby="navbarDropdownMenuLink">
             <% current_user.pending_friend_requests.each do |request| %>
-            <li><%=request.sender_friend.email %> has send you and invitation</li>
+            <li><strong><%=request.sender_friend.email %></strong> has send you and invitation</li>
             <% end %>
           </ul>
         </li>
