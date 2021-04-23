@@ -1,6 +1,8 @@
 <div class="row"> 
   <div class="col-8">
     <%= render "new_post" %>
-    <%= render "show_posts" %>
+    <% @posts.each do |post| %>
+    <%= render "card", post: post %>
+    <% end %>
   </div>
 </div>
