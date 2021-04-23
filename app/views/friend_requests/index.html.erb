@@ -1,0 +1,7 @@
+<% @friend_requests.each do |fr| %>
+  <div class="card">
+    <div class="card-body">
+      <p><%= fr.sender_friend.email %> wants to be your friend!</p>
+    </div>
+  </div>
+<% end %>

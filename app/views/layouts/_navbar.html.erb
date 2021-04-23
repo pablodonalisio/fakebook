@@ -13,7 +13,10 @@
           </a>
           <ul class="dropdown-menu px-4" aria-labelledby="navbarDropdownMenuLink">
             <% current_user.pending_friend_requests.each do |request| %>
-            <li><strong><%=request.sender_friend.email %></strong> has send you and invitation</li>
+            <li>
+              <strong><%=request.sender_friend.email %></strong> has send you an
+              <%= link_to "invitation", friend_requests_path %>
+            </li>
             <% end %>
           </ul>
         </li>
