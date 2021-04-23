@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :name, presence: true
+  
   has_many :sended_friend_requests, foreign_key: :sender_friend_id, class_name: "FriendRequest"
   has_many :recieved_friend_requests, foreign_key: :reciever_friend_id, class_name: "FriendRequest"
 
