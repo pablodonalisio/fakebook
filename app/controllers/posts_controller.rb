@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def index
     @post = current_user.posts.build
     @posts = current_user.posts.all
+    @friends = current_user.friends
   end
 
   def show

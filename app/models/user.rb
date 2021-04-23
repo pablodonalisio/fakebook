@@ -12,4 +12,13 @@ class User < ApplicationRecord
   def pending_friend_requests
     self.recieved_friend_requests.where(state: "pending")
   end
+
+  def friends
+    sended_requests = FriendRequest.where("sender_friend_id = ? and state = 'accepted'", self.id)
+                                   .pluck(:reciever_friend_id)
+    recieved_requests = FriendRequest.where("reciever_friend_id = ? and state = 'accepted'", self.id)
+                                     .pluck(:sender_friend_id)
+    friends_ids = [sended_requests, recieved_requests].flatten
+    User.find(friends_ids)
+  end 
 end

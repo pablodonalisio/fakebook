@@ -5,4 +5,18 @@
       <%= render "card", post: post %>
     <% end %>
   </div>
+  <div class="col-4">
+    <div class="card mt-4">
+      <div class="card-header py-1 d-flex justify-content-between">
+        <h5 class="card-title">Friends</h5>
+      </div>
+      <div class="card-body mt-0">
+        <ul>
+          <% @friends.each do |friend| %>
+            <li><%= friend.email %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
