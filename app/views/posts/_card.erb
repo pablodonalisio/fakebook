@@ -2,10 +2,8 @@
   <div class="card-header py-1 d-flex justify-content-between">
     <h5 class="card-title"><%= post.user.email%></h5>
     <div class="header-buttons">
-      <%= link_to "Edit", edit_post_path(post), class: "btn btn-primary" %>
-      <button type="button" class="btn btn-outline-primary">
-        Delete
-      </button>
+      <%= link_to "Edit", edit_post_path(post), class: "btn btn-outline-primary" %>
+      <%= link_to "Delete", post_path(post), method: "delete", class: "btn btn-outline-primary" %>
     </div>
   </div>
   <div class="card-body mt-0">
