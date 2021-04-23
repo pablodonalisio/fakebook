@@ -2,6 +2,16 @@
   <div class="card">
     <div class="card-body">
       <p><%= fr.sender_friend.email %> wants to be your friend!</p>
+      <div class="d-flex">
+        <%= form_with model: fr, method: "patch" do |f| %>
+          <%= f.hidden_field :state, value: "accepted" %>
+          <%= f.submit "Accept", class: "btn btn-primary mx-1" %>
+        <% end %>
+        <%= form_with model: fr, method: "patch" do |f| %>
+          <%= f.hidden_field :state, value: "declined" %>
+          <%= f.submit "Decline", class: "btn btn-primary mx-1" %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

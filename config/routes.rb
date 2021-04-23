@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :posts
-  resources :friend_requests, only: [:index]
+  resources :friend_requests, only: [:index, :update]
 end
