@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post = current_user.posts.build
   end
   
   def create
@@ -17,15 +18,23 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path, notice: "Your post has been created"
     else 
-      render "new_post"
+      render :new
     end 
     
   end
 
   def edit
+    @post = current_user.posts.find(params[:id])
   end
 
   def update
+    @post = current_user.posts.find(params[:id])
+
+    if @post.update(post_params)
+      redirect_to posts_path
+    else
+      render :edit
+    end
   end
 
   def destroy
