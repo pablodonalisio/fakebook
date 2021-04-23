@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   def index
+    @post = current_user.posts.build
+    @posts = current_user.posts.all
   end
 
   def show
@@ -7,7 +9,6 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = current_user.posts.build
   end
   
   def create
@@ -16,7 +17,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path, notice: "Your post has been created"
     else 
-      render :new 
+      render "new_post"
     end 
     
   end

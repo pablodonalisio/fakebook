@@ -1,0 +1,15 @@
+<% @posts.each do |post|%>
+  <div class="card mt-4">
+    <div class="card-header py-1">
+      <h5 class="card-title"><%= post.user.email%></h5>
+    </div>
+    <div class="card-body mt-0">
+      <p class="card-text from-control"><%= post.body %></p>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary mt-2">Like</button>
+      <button class="btn btn-secondary mt-2">Comment</button>
+    </div>
+  </div>
+<% end %>
+
