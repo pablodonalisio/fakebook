@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   has_many :posts
 
+  has_one :profile
+  
   def pending_friend_requests
     self.recieved_friend_requests.where(state: "pending")
   end
