@@ -1,7 +1,15 @@
 <% @posts.each do |post|%>
   <div class="card mt-4">
-    <div class="card-header py-1">
+    <div class="card-header py-1 d-flex justify-content-between">
       <h5 class="card-title"><%= post.user.email%></h5>
+      <div class="header-buttons">
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Edit
+        </button>
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Delete
+        </button>
+      </div>
     </div>
     <div class="card-body mt-0">
       <p class="card-text from-control"><%= post.body %></p>
