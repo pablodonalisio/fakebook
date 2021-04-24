@@ -6,12 +6,19 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   
-  has_many :sended_friend_requests, foreign_key: :sender_friend_id, class_name: "FriendRequest"
-  has_many :recieved_friend_requests, foreign_key: :reciever_friend_id, class_name: "FriendRequest"
+  has_many :sended_friend_requests,
+           foreign_key: :sender_friend_id,
+           class_name: "FriendRequest",
+           dependent: :destroy
 
-  has_many :posts
+  has_many :recieved_friend_requests, 
+           foreign_key: :reciever_friend_id, 
+           class_name: "FriendRequest", 
+           dependent: :destroy
 
-  has_one :profile
+  has_many :posts, dependent: :destroy
+
+  has_one :profile, dependent: :destroy
   
   def pending_friend_requests
     self.recieved_friend_requests.where(state: "pending")

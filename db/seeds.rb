@@ -1,8 +1,5 @@
-User.destroy_all
-FriendRequest.destroy_all
 Post.destroy_all
-Profiles.destroy_all
-
+User.destroy_all
 
 User.create([
   {
