@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   devise_for :users
   resources :posts
   resources :friend_requests, only: %i[index update]
-  resources :profile, only: %i[show edit]
+  resources :profile, only: %i[show edit update]
 end

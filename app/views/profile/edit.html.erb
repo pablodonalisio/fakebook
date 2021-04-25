@@ -1,0 +1,26 @@
+<div class="card mt-4 col-4">
+  <div class="card-header py-1 d-flex justify-content-between">
+    <div></div>
+    <h5 class="card-title"><%= current_user.name%></h5>
+    <div class="header-buttons">
+      <%= link_to "Edit", root_path, class: "btn btn-outline-primary" %>
+    </div>
+  </div>
+  <div class="card-body mt-0">
+    <%= form_with model: @profile, method: "patch", class: "list-group" do |form|%>
+      <li class="list-group-item list-group-item-primary">
+      <%= form.label :birthday %>
+      <%= form.date_field :birthday %><br />
+      </li>
+      <li class="list-group-item list-group-item-primary">
+      <%= form.label :country %>
+      <%= form.text_field :country %><br />
+      </li>
+      <li class="list-group-item list-group-item-primary">
+      <%= form.label :city %>
+      <%= form.text_field :city %><br />
+      </li>
+      <%= form.submit "Edit", class:"btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
