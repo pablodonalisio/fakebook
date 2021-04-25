@@ -19,6 +19,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   has_one :profile, dependent: :destroy
+
+  after_create :init_profile
   
   def pending_friend_requests
     self.recieved_friend_requests.where(state: "pending")
@@ -31,5 +33,9 @@ class User < ApplicationRecord
                                      .pluck(:sender_friend_id)
     friends_ids = [sended_requests, recieved_requests].flatten
     User.find(friends_ids)
+  end 
+
+  def init_profile
+    self.build_profile.save
   end 
 end
