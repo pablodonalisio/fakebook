@@ -18,5 +18,20 @@
         </ul>
       </div>
     </div>
+    <div class="card mt-4">
+      <div class="card-header py-1 d-flex justify-content-between">
+        <h5 class="card-title">Other users</h5>
+      </div>
+      <div class="card-body mt-0">
+        <ul>
+          <% current_user.other_users.each do |user| %>
+            <li>
+              <%= user.name %> (<%= user.email %>)
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
+  
 </div>

@@ -35,6 +35,13 @@ class User < ApplicationRecord
     User.find(friends_ids)
   end 
 
+  def other_users
+    users = User.all 
+    users.select do |user| 
+      true unless (user.id == self.id) || (self.friends.include? user)
+    end 
+  end
+
   def init_profile
     self.build_profile.save
   end 
