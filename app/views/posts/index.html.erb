@@ -23,10 +23,15 @@
         <h5 class="card-title">Other users</h5>
       </div>
       <div class="card-body mt-0">
-        <ul>
+        <ul class="list-group">
           <% current_user.other_users.each do |user| %>
-            <li>
+            <li class="d-flex list-item">
               <%= user.name %> (<%= user.email %>)
+              <%= form_with model: current_user.sended_friend_requests.build do |form| %>
+                <%= form.hidden_field :reciever_friend_id, value: user.id %>
+                <%= form.hidden_field :state, value: "pending" %>
+                <%= form.submit "Add", class: "btn btn-primary btn-sm ml-2" %>
+              <% end %>
             </li>
           <% end %>
         </ul>

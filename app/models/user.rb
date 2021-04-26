@@ -38,7 +38,7 @@ class User < ApplicationRecord
   def other_users
     users = User.all 
     users.select do |user| 
-      true unless (user.id == self.id) || (self.friends.include? user)
+      true unless (user.id == self.id) || (self.friends.include? user) || (self.sended_friend_requests.where("reciever_friend_id = ?", user.id))
     end 
   end
 
