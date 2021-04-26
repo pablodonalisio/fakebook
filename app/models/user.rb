@@ -36,13 +36,14 @@ class User < ApplicationRecord
   end 
 
   def other_users
-    users = User.all 
-    users.select do |user| 
-      true unless (user.id == self.id) || (self.friends.include? user) || (self.sended_friend_requests.where("reciever_friend_id = ?", user.id))
-    end 
+    User.all.select do |user|
+      (user.id != id) &&
+        (friends.exclude? user) &&
+        sended_friend_requests.where('reciever_friend_id = ?', user.id).none?
+    end
   end
 
   def init_profile
     self.build_profile.save
-  end 
+  end
 end
