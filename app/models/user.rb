@@ -5,15 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
-  
+
   has_many :sended_friend_requests,
            foreign_key: :sender_friend_id,
-           class_name: "FriendRequest",
+           class_name: 'FriendRequest',
            dependent: :destroy
 
   has_many :recieved_friend_requests, 
-           foreign_key: :reciever_friend_id, 
-           class_name: "FriendRequest", 
+           foreign_key: :reciever_friend_id,
+           class_name: 'FriendRequest',
            dependent: :destroy
 
   has_many :posts, dependent: :destroy
@@ -21,9 +21,9 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
 
   after_create :init_profile
-  
+
   def pending_friend_requests
-    self.recieved_friend_requests.where(state: "pending")
+    recieved_friend_requests.where(state: 'pending')
   end
 
   def friends
@@ -33,7 +33,7 @@ class User < ApplicationRecord
                                      .pluck(:sender_friend_id)
     friends_ids = [sended_requests, recieved_requests].flatten
     User.find(friends_ids)
-  end 
+  end
 
   def other_users
     User.all.select do |user|
