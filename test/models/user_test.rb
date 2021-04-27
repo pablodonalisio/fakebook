@@ -16,4 +16,9 @@ class UserTest < ActiveSupport::TestCase
   test 'check for friends' do
     assert_includes @user.friends, users(:three)
   end
+
+  test 'initiate a profile after user is created' do
+    user = User.create({name:'pipo', email:'pipo@pipo.com', password:'pipopi'})
+    assert_instance_of Profile, user.profile
+  end
 end
