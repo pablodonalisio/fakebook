@@ -4,7 +4,7 @@ class FriendRequestsController < ApplicationController
   end
 
   def create
-    @request = current_user.sended_friend_requests.create!(friend_request_params) 
+    @request = current_user.sended_friend_requests.create!(friend_request_params)
   end
 
   def update
