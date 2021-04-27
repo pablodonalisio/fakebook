@@ -27,9 +27,9 @@ class User < ApplicationRecord
   end
 
   def friends
-    sended_requests = FriendRequest.where("sender_friend_id = ? and state = 'accepted'", self.id)
+    sended_requests = FriendRequest.where("sender_friend_id = ? and state = 'accepted'", id)
                                    .pluck(:reciever_friend_id)
-    recieved_requests = FriendRequest.where("reciever_friend_id = ? and state = 'accepted'", self.id)
+    recieved_requests = FriendRequest.where("reciever_friend_id = ? and state = 'accepted'", id)
                                      .pluck(:sender_friend_id)
     friends_ids = [sended_requests, recieved_requests].flatten
     User.find(friends_ids)
@@ -44,6 +44,6 @@ class User < ApplicationRecord
   end
 
   def init_profile
-    self.build_profile.save
+    build_profile.save
   end
 end
