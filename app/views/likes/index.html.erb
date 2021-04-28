@@ -1,0 +1,7 @@
+<ul class="list-group">
+  <% @likes.each do |like| %>
+    <li class="list-group-item">
+      <%= link_to like.user.name, profile_path(like.user.profile) %>
+    </li>
+  <% end %>
+</ul>

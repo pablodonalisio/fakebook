@@ -1,0 +1,34 @@
+<div class="card mt-4">
+  <div class="card-header py-1 d-flex justify-content-between">
+    <h5 class="card-title"><%= post.user.name%></h5>
+    <% if post.user == current_user%>
+      <div class="header-buttons">
+        <%= link_to "Edit", edit_post_path(post), class: "btn btn-outline-primary" %>
+        <%= link_to "Delete", post_path(post), method: "delete", class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="card-body mt-0">
+    <p class="card-text"><%= post.body %></p>
+  </div>
+  <div class="card-footer d-flex">
+    <% unless post.likes.where("user_id = #{current_user.id}").exists? %>
+      <%= link_to 'Like',
+        likes_path(post_id: post.id),
+        method: 'post',
+        class: 'btn btn-primary' 
+      %>
+    <% else %>
+      <%= link_to 'Unlike',
+        like_path(post),
+        method: 'delete',
+        class: 'btn btn-info' 
+      %>
+    <% end %>
+    <button class="btn btn-secondary mr-2">Comment</button>
+   
+    <% if post.likes.any? %>
+      <%= link_to 'likes', likes_path(post_id: post.id), class: 'btn btn-primary btn-sm rounded-circle' %>
+    <% end %>
+  </div>
+</div>
