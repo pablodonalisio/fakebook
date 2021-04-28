@@ -15,19 +15,19 @@
     <% unless post.likes.where("user_id = #{current_user.id}").exists? %>
       <%= form_with url: likes_path, method: 'post' do |form| %>
         <%= form.hidden_field :post_id, value: post.id %>
-        <%= form.submit "Like", class: "btn btn-primary mt-2 mr-2" %>
+        <%= form.submit "Like", class: "btn btn-primary mr-2" %>
       <% end %>
     <% else %>
       <%= form_with url: like_path(post), method: 'delete' do |form| %>
         <%= form.hidden_field :post_id, value: post.id %>
-        <%= form.submit "Like", class: "btn btn-primary mt-2 mr-2" %>
+        <%= form.submit "Like", class: "btn btn-primary mr-2" %>
       <% end %>
     <% end %>
-    <button class="btn btn-secondary mt-2 mr-2">Comment</button>
+    <button class="btn btn-secondary mr-2">Comment</button>
    
     <% if post.likes.any? %>
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" class="btn btn-primary btn-sm rounded-circle" data-bs-toggle="modal" data-bs-target="#exampleModal">
         likes
       </button>
 

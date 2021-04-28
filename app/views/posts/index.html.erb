@@ -1,6 +1,6 @@
 <div class="row"> 
   <div class="col-8">
-    <%= render partial: "form", locals: { post: @post, title: "Create Post", method: "post" } %>
+    <%= render partial: "post_form", locals: { post: @post, title: "Create Post", method: "post" } %>
     <% @posts.each do |post| %>
       <%= render "card", post: post %>
     <% end %>
