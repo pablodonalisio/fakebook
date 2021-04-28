@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :posts
   resources :friend_requests, only: %i[index update create]
   resources :profile, only: %i[show edit update]
-  resources :likes, only: %i[create]
+  resources :likes, only: %i[create destroy]
 end

@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
 
-  has_many :likes
+  has_many :likes, dependent: :destroy
 
   after_create :init_profile
 
