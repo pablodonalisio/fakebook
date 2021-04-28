@@ -1,5 +1,6 @@
-<%= form_with url: comments_path, method: 'post', class: "col-12 d-flex mt-2" do |form| %>
-  <%= form.hidden_field :post_id, value: post_id %>
+<%= form_with url: comments_path, method: 'post', class: "col-12 d-flex my-2" do |form| %>
+  <%= form.hidden_field :commentable_id, value: commentable_id %>
+  <%= form.hidden_field :commentable_type, value: commentable_type %>
   <%= form.text_field :body, class: 'form-control' %>
   <%= form.submit 'Comment', class: 'btn btn-primary' %>
 <% end %>

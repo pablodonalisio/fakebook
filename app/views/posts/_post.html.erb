@@ -34,7 +34,7 @@
     </div>
     <div class="row mt-2">
       
-      <%= render partial: 'new_comment', locals: {post_id: post.id} %>
+      <%= render partial: 'new_comment', locals: {commentable_id: post.id, commentable_type: "Post"} %>
       <h5 class="mt-2 ">Comments</h5>
       <%= render partial: 'comment', collection: post.comments %>
     </div>
