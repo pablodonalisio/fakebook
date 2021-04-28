@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
 
+  has_many :likes
+
   after_create :init_profile
 
   def pending_friend_requests
