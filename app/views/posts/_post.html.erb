@@ -13,30 +13,33 @@
   </div>
   <div class="card-footer container">
     <div class="row">
-      <% unless post.likes.where("user_id = #{current_user.id}").exists? %>
-        <%= link_to 'Like',
-          post_likes_path(post),
-          method: 'post',
-          class: 'btn btn-primary' 
-        %>
-      <% else %>
-        <% like = post.likes.where("user_id = #{current_user.id}").first%>
-        <%= link_to 'Unlike',
-          post_like_path(post, like.id),
-          method: 'delete',
-          class: 'btn btn-info' 
-        %>
-      <% end %>
-      
-      <% if post.likes.any? %>
-        <%= link_to "#{post.likes.length} likes", post_likes_path(post), class: 'btn btn-primary btn-sm rounded-circle' %>
-      <% end %>
+      <div class="col-12">
+        <% unless post.likes.where("user_id = #{current_user.id}").exists? %>
+          <%= link_to 'Like',
+            post_likes_path(post),
+            method: 'post',
+            class: 'btn btn-primary' 
+          %>
+        <% else %>
+          <% like = post.likes.where("user_id = #{current_user.id}").first%>
+          <%= link_to 'Unlike',
+            post_like_path(post, like.id),
+            method: 'delete',
+            class: 'btn btn-info' 
+          %>
+        <% end %>
+        
+        <% if post.likes.any? %>
+          <%= link_to "#{post.likes.length} likes", post_likes_path(post), class: 'btn btn-primary btn-sm rounded-circle' %>
+        <% end %>
+      </div>
     </div>
     <div class="row mt-2">
-      
       <%= render partial: 'new_comment', locals: {commentable_id: post.id, commentable_type: "Post"} %>
-      <h5 class="mt-2 ">Comments</h5>
-      <%= render partial: 'comment', collection: post.comments %>
+      <h5 class="col-12 mt-2">Comments</h5>
+      <div class="col-12 mt-2">
+        <%= render partial: 'comment', collection: post.comments %>
+      </div>
     </div>
   </div>
 </div>

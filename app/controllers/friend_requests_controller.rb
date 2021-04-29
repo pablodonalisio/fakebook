@@ -5,6 +5,7 @@ class FriendRequestsController < ApplicationController
 
   def create
     @request = current_user.sended_friend_requests.create!(friend_request_params)
+    redirect_to posts_path
   end
 
   def update

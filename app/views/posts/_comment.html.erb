@@ -1,25 +1,27 @@
-<div class="col-12 border border-5 border-secondary rounded mt-2">
+<div class="rounded p-2" style="background-color: #ddebff">
   <p><strong><%= comment.user.name %></strong></p>
   <p><%= comment.body %></p>
-  <% unless comment.likes.where("user_id = #{current_user.id}").exists? %>
-    <%= link_to 'Like',
-      comment_likes_path(comment),
-      method: 'post',
-      class: 'btn btn-primary' 
-    %>
-  <% else %>
-    <% like = comment.likes.where("user_id = #{current_user.id}").first%>
-    <%= link_to 'Unlike',
-      comment_like_path(comment, like.id),
-      method: 'delete',
-      class: 'btn btn-info' 
-    %>
-  <% end %>
-  <% if comment.likes.any? %>
-    <%= link_to "#{comment.likes.length} likes", comment_likes_path(comment), class: 'btn btn-primary btn-sm rounded-circle' %>
-  <% end %>
-  <div class="row mt-2">
-    <%= render partial: 'new_comment', locals: {commentable_id: comment.id, commentable_type: "Comment"} %>
+</div>
+<% unless comment.likes.where("user_id = #{current_user.id}").exists? %>
+  <%= link_to 'Like',
+    comment_likes_path(comment),
+    method: 'post',
+    class: 'btn btn-primary' 
+  %>
+<% else %>
+  <% like = comment.likes.where("user_id = #{current_user.id}").first%>
+  <%= link_to 'Unlike',
+    comment_like_path(comment, like.id),
+    method: 'delete',
+    class: 'btn btn-info' 
+  %>
+<% end %>
+<% if comment.likes.any? %>
+  <%= link_to "#{comment.likes.length} likes", comment_likes_path(comment), class: 'btn btn-primary btn-sm rounded-circle' %>
+<% end %>
+<div class="row mt-2">
+  <%= render partial: 'new_comment', locals: {commentable_id: comment.id, commentable_type: "Comment"} %>
+  <div class="col-12 mt-2 pl-5">
     <%= render partial: 'comment', collection: comment.comments %>
   </div>
 </div>

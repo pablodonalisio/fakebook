@@ -43,7 +43,8 @@ class User < ApplicationRecord
     User.all.select do |user|
       (user.id != id) &&
         (friends.exclude? user) &&
-        sended_friend_requests.where('reciever_friend_id = ?', user.id).none?
+        sended_friend_requests.where('reciever_friend_id = ?', user.id).none? &&
+        pending_friend_requests.where('sender_friend_id = ?', user.id).none?
     end
   end
 
