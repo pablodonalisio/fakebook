@@ -9,7 +9,7 @@
           <% @friends.each do |friend| %>
             <li class="list-group-item">
               <img src=<%= friend.profile.photo %> width="30px" height="30px">
-              <%= friend.name %>
+              <%= link_to friend.name, friend.profile %>
             </li>
           <% end %>
         </ul>
@@ -29,7 +29,7 @@
           <% current_user.other_users.each do |user| %>
             <li class="d-flex list-group-item">
               <img src=<%= user.profile.photo %> width="30px" height="30px">
-              <%= user.name %> (<%= user.email %>)
+              <%= link_to user.name, user.profile, class: 'link-secondary' %>
               <%= form_with model: current_user.sended_friend_requests.build do |form| %>
                 <%= form.hidden_field :reciever_friend_id, value: user.id %>
                 <%= form.hidden_field :state, value: "pending" %>
