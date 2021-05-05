@@ -1,24 +1,31 @@
+require 'faker'
+
 Post.destroy_all
 User.destroy_all
 
-User.create([
-  {
-    name: "Pablo",
-    email: "pablo@pablo.com",
-    password: "asdfgh",
-    password_confirmation: "asdfgh"
-  },
-  {
-    name: "Pepo",
-    email: "pepo@pepo.com",
-    password: "hgfdsa",
-    password_confirmation: "hgfdsa"
-  },
-  {
-    name: "Guille",
-    email: "guille@guille.com",
-    password: "guille",
-    password_confirmation: "guille"
-  }
-])
+100.times do
+  user = User.create(
+    {
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      password: 'asdfgh',
+      password_confirmation: 'asdfgh'
+    }
+  )
 
+  user.profile.update(
+    {
+      birthday: Faker::Date.birthday,
+      city: Faker::Address.city,
+      photo: Faker::Avatar.image
+    }
+  )
+end
+
+User.take(15).each do |user|
+  user.posts.create(
+    {
+      body: Faker::Lorem.paragraph
+    }
+  )
+end
