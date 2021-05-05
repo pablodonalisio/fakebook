@@ -1,16 +1,21 @@
-<div class="card mt-4 col-4">
+<div class="card mt-4 col-lg-4">
   <div class="card-header py-1 d-flex justify-content-between">
     <div></div>
-    <h5 class="card-title"><%= current_user.name%></h5>
+    <div class="text-center">
+      <img src=<%= @profile.photo %> width="200px" height="200px">
+      <h5 class="card-title"><%= @profile.user.name%></h5>
+    </div>
     <div class="header-buttons">
-      <%= link_to "Edit", edit_profile_path, class: "btn btn-outline-primary" %>
+      <%if current_user == @profile.user %>
+        <%= link_to "Edit", edit_profile_path, class: "btn btn-outline-primary" %>
+      <% end %>
     </div>
   </div>
   <div class="card-body mt-0">
     <ul class="list-group">
-      <li class="list-group-item list-group-item-primary">Birthday: <%= @profile.birthday %></li>
-      <li class="list-group-item list-group-item-primary">Country: <%= @profile.country %></li>
-      <li class="list-group-item list-group-item-primary">City: <%= @profile.city %></li>
+      <li class="list-group-item">Birthday: <%= @profile.birthday %></li>
+      <li class="list-group-item">Country: <%= @profile.country %></li>
+      <li class="list-group-item">City: <%= @profile.city %></li>
     </ul>
   </div>
 </div>
