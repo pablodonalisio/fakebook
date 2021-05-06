@@ -30,22 +30,27 @@ class User < ApplicationRecord
     recieved_friend_requests.where(state: 'pending')
   end
 
-  def friends
+  def friends_ids
     sended_requests = FriendRequest.where("sender_friend_id = ? and state = 'accepted'", id)
                                    .pluck(:reciever_friend_id)
     recieved_requests = FriendRequest.where("reciever_friend_id = ? and state = 'accepted'", id)
                                      .pluck(:sender_friend_id)
-    friends_ids = [sended_requests, recieved_requests].flatten
-    User.find(friends_ids)
+    [sended_requests, recieved_requests].flatten
   end
 
   def other_users
-    User.all.select do |user|
-      (user.id != id) &&
-        (friends.exclude? user) &&
-        sended_friend_requests.where('reciever_friend_id = ?', user.id).none? &&
-        pending_friend_requests.where('sender_friend_id = ?', user.id).none?
-    end
+    # User.all.includes(:sended_friend_requests, :recieved_friend_requests, :profile).select do |user|
+    #   (user.id != id) &&
+    #     (friends.exclude? user) &&
+    #     sended_friend_requests.where('reciever_friend_id = ?', user.id).none? &&
+    #     recieved_friend_requests.where(state: 'pending').where('sender_friend_id = ?', user.id).none?
+    # end
+    ids = []
+    ids << id
+    ids << friends_ids
+    ids << sended_friend_requests.where("state = 'pending'").pluck(:reciever_friend_id)
+    ids << recieved_friend_requests.where("state = 'pending'").pluck(:sender_friend_id)
+    User.where.not(id: ids.flatten).includes(:profile)
   end
 
   def init_profile

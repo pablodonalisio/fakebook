@@ -3,7 +3,7 @@ require 'faker'
 Post.destroy_all
 User.destroy_all
 
-100.times do
+5.times do
   user = User.create(
     {
       name: Faker::Name.name,
@@ -22,7 +22,7 @@ User.destroy_all
   )
 end
 
-User.take(15).each do |user|
+User.take(2).each do |user|
   user.posts.create(
     {
       body: Faker::Lorem.paragraph

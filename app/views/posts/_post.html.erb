@@ -1,11 +1,17 @@
 <div class="card mt-4">
   <div class="card-header py-1 d-flex justify-content-between">
-    <h5 class="card-title"><%= post.user.name%></h5>
+    <div></div>
+    <h5 class="card-title">
+      <img src=<%= post.user.profile.photo %> width="30px" height="30px">
+      <%= post.user.name%>
+    </h5>
     <% if post.user == current_user%>
       <div class="header-buttons">
         <%= link_to "Edit", edit_post_path(post), class: "btn btn-outline-primary" %>
         <%= link_to "Delete", post_path(post), method: "delete", class: "btn btn-outline-primary" %>
       </div>
+    <% else %>
+      <div></div>
     <% end %>
   </div>
   <div class="card-body mt-0">
@@ -14,14 +20,14 @@
   <div class="card-footer container">
     <div class="row">
       <div class="col-12">
-        <% unless post.likes.where("user_id = #{current_user.id}").exists? %>
+        <% unless @user_liked_posts_ids.include?(post.id) %>
           <%= link_to 'Like',
             post_likes_path(post),
             method: 'post',
             class: 'btn btn-primary' 
           %>
         <% else %>
-          <% like = post.likes.where("user_id = #{current_user.id}").first%>
+          <% like = post.likes.find_by(user_id: current_user.id) %>
           <%= link_to 'Unlike',
             post_like_path(post, like.id),
             method: 'delete',
