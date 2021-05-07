@@ -1,24 +1,31 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a mock up of the well known social media app. You can create a user and a profile, add friends, create posts, like posts, comments posts and more.
 
-Things you may want to cover:
+## Ruby version
 
-* Ruby version
+`ruby '2.7.0'`
 
-* System dependencies
+## System dependencies
 
-* Configuration
+`rails 6.1.3.1`
 
-* Database creation
+## Configuration
 
-* Database initialization
+Get a local copy of the repo with `git clone git@github.com:pablodonalisio/fakebook.git`
 
-* How to run the test suite
+Then `cd fakebook/`
 
-* Services (job queues, cache servers, search engines, etc.)
+and install dependencies with:
 
-* Deployment instructions
+```
+bundle install
+yarn install'
+```
 
-* ...
+Run a server in the terminal with `rails s` and go to [http://localhost:3000](http://localhost:3000)
+to see the app.
+
+You'll need to sign in.
+
+Enjoy!
