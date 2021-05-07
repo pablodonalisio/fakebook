@@ -39,12 +39,6 @@ class User < ApplicationRecord
   end
 
   def other_users
-    # User.all.includes(:sended_friend_requests, :recieved_friend_requests, :profile).select do |user|
-    #   (user.id != id) &&
-    #     (friends.exclude? user) &&
-    #     sended_friend_requests.where('reciever_friend_id = ?', user.id).none? &&
-    #     recieved_friend_requests.where(state: 'pending').where('sender_friend_id = ?', user.id).none?
-    # end
     ids = []
     ids << id
     ids << friends_ids

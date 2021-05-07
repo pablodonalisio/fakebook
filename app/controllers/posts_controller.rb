@@ -3,14 +3,9 @@ class PostsController < ApplicationController
     @post = current_user.posts.build
 
     @user_liked_posts_ids = current_user.likes.where("likeable_type = 'Post'").pluck(:likeable_id)
-    # @user_liked_posts = Post.where(id: user_liked_posts_ids)
     @posts = Post.all.includes(:likes, :comments, user: [:profile])
 
     @friends = User.where(id: current_user.friends_ids).includes(:profile)
-  end
-
-  def show
-    
   end
 
   def new
