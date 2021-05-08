@@ -7,8 +7,12 @@
     </h5>
     <% if post.user == current_user%>
       <div class="header-buttons">
-        <%= link_to "Edit", edit_post_path(post), class: "btn btn-outline-primary" %>
-        <%= link_to "Delete", post_path(post), method: "delete", class: "btn btn-outline-primary" %>
+        <%= link_to edit_post_path(post) do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+        <%= link_to post_path(post), method: "delete" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
       </div>
     <% else %>
       <div></div>
@@ -24,19 +28,24 @@
           <%= link_to 'Like',
             post_likes_path(post),
             method: 'post',
-            class: 'btn btn-primary' 
+            class: 'btn btn-outline-secondary ' 
           %>
         <% else %>
           <% like = post.likes.find_by(user_id: current_user.id) %>
-          <%= link_to 'Unlike',
+          <%= link_to 'Like',
             post_like_path(post, like.id),
             method: 'delete',
-            class: 'btn btn-info' 
+            class: 'btn btn-outline-primary' 
           %>
         <% end %>
         
         <% if post.likes.any? %>
-          <%= link_to "#{post.likes.length} likes", post_likes_path(post), class: 'btn btn-primary btn-sm rounded-circle' %>
+          <%= link_to post_likes_path(post) do %>
+            <span class="btn btn-primary btn-sm rounded-circle">
+              <i class="far fa-thumbs-up"></i>
+            </span>
+            <%= post.likes.length %> 
+          <% end%>
         <% end %>
       </div>
     </div>
