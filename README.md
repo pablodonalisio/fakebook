@@ -20,7 +20,7 @@ and install dependencies with:
 
 ```
 bundle install
-yarn install'
+yarn install
 ```
 
 Run a server in the terminal with `rails s` and go to [http://localhost:3000](http://localhost:3000)
